@@ -1,0 +1,12 @@
+body{
+    border-style: dotted solid;
+    border-width: 10px;
+    border-color: green black;
+    border-radius: 50px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+    text-align: center;
+    background-color: #a8a8a8;  
+}

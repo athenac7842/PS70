@@ -1,0 +1,44 @@
+body{
+    border-style: dotted solid;
+    border-width: 10px;
+    border-color: green black;
+    border-radius: 50px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+    text-align: center;
+    cursor: url(images/lightbulboff.png), auto;
+    
+    
+    
+}
+
+a:hover {
+    cursor: url(images/lightbulbon.png) 25 25, pointer;
+}
+
+/* .column{
+    width:33.3%;
+    
+}
+.table{
+    align-items: center;
+} */
+
+/* .caption{
+    float:left;
+    width: 200px;
+    text-align:center;
+    padding: 10px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+.margin{
+    margin-bottom: 15px;
+} */
