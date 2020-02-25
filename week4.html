@@ -31,25 +31,87 @@
     <br></br>
         This is the fully assembled piece. 
     </p>
-    <img src="assets/images/week4/box_full.jpg" width= "80%"/>
+    <img src="assets/images/week4/box_full.jpg" width= "40%"/>
     <br></br>
     <p>
         I decided to make the phototransistor stick out of the box to avoid it being affected by the internal light produced by the LED.
     </p>
-    <img src="assets/images/week4/wires_pre.jpg"width= "80%"/>
-    <img src="assets/images/week4/wires_post.jpg" width= "80%"/>
-    <img src="assets/images/week4/trans_out.jpg" width= "80%"/>
+    <img src="assets/images/week4/wires_pre.jpg"width= "40%"/>
+    <img src="assets/images/week4/wires_post.jpg" width= "40%"/>
+    <img src="assets/images/week4/trans_out.jpg" width= "40%"/>
+    <img src="assets/images/week4/redled.JPG" width=40%/>
+    <p>
+        I soldered the wires together and used heat-shrink, only to realize that it was a misplaced red LED and not a phototransistor. Leason learned: check first. That is why I decided to use F to M wires to attach the actual
+        phototransistor even though it is less stable due to time constraints.
+    </p>
     <br></br>
-    <img src="assets/images/week4/box_in.jpg"width= "80%"/> 
+    <img src="assets/images/week4/box_in.jpg"width= "50%"/> 
+    <img src="assets/images/week4/arduinoinside.JPG" width= "70%"/>
     <br></br>
     <p>
         The Arduino was programed to react to light via the phototransistor and light an LED located inside of the box as the external area got darker.
-        <!-- INSERT CODE -->
+        <a href=""> Download code soon to be implemented </a>
+        <pre><code class="language-arduino">
+            /* AnalogReadSerial*/
+            /*https://forum.arduino.cc/index.php?topic=202115.0 */
+            /* https://www.tutorialspoint.com/arduino/arduino_connecting_switch.htm */
+
+            // the setup routine runs once when you press reset:
+            void setup() {
+                // initialize serial communication at 9600 bits per second:
+                pinMode(A0, INPUT); // phototransistor
+                Serial.begin(9600);
+                pinMode(13, OUTPUT); // LED
+                // initialize the switch as an input:
+                pinMode(2, INPUT); // Switch
+            }
+
+            // the loop routine runs over and over again forever:
+            void loop() {
+                // read the input on analog pin 0:
+                int sensorValue = analogRead(A0);
+                // print out the value you read:
+                Serial.println(sensorValue);
+                delay(100);        // delay in between reads for stability
+                // read the state of the pushbutton value:
+                int switchState = digitalRead(2);
+                // check if the switch is on.
+                // if it is, the switchState is HIGH:
+                if (switchState == HIGH) {
+                    // turn LED on:
+                    if (sensorValue <= 100) {
+                        digitalWrite(13, HIGH); //keeps led off in high light conditions
+                        delay(50);
+                    }
+                    else {
+                        digitalWrite(13,LOW); //above a certain threshold, it is just low
+                        delay(50);
+                    }
+                } 
+                else {
+                    // turn LED off:
+                    digitalWrite(13, LOW); //if switch off, no light no matter what
+                }
+            }
+            
+        </code></pre>
     </p>
+    <img src="assets/images/week4/ledoff.JPG"width= "50%"/> 
+    <img src="assets/images/week4/ledon.JPG" width= "50%"/>
+    <br></br>
     <p>
-        The end goal was to make a cute night light.
+        The switch and the phototransistor were made external via F to M wires to allow for external control of the LED.
     </p>
-    <img src="assets/images/week4/box_cool.jpg" width= "80%"/>
+    <img src="assets/images/week4/wires.JPG"width= "60%"/> 
+    <img src="assets/images/week4/switch.JPG" width= "60%"/>
+    <p>
+        The switch, on pin 2, switches between ground and 3V to supply power. The phototransistor, on pin A0, uses a 10k Ohm resistor, connecting from 3V to ground. The LED uses a 100 Ohm resistor and connects from pin 13 to ground.
+    </p>
+    <br></br>
+    <p>
+        The end goal was to make a cute night light. (link to youtube video on photo below)
+    </p>
+    <a href="https://youtu.be/u18paSmzX70"><img src="assets/images/week4/box_cool.jpg" width= "80%"/></a>
     <br></br>
 
 </body>
