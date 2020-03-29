@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Athena's Projects</title>
+    <title>Capacitance</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/styledoc.css" />
@@ -11,23 +11,25 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
-<body>    
-    <img src="assets/images/week4/box_full.jpg" width= "40%"/>
+<body> 
     <br></br>
+    <head>Capacitive Sensing</head>  <br></br> 
     <p>
-        I decided to use the capacitors as an alarm clock where you have to touch them together to turn it off. There is a switch to allow it to be turned on and off. Through the code the time until the noise begins can be adjusted.
+        I decided to use the capacitors as a creator of random noise. The project outcome was very entertaining and I was able to study the distances that created different noises. There is a switch to allow it to be turned on and off. 
     </p>
-    <img src="assets/images/week4/wires_pre.jpg"width= "40%"/>
-    <img src="assets/images/week4/wires_post.jpg" width= "40%"/>
     <p>
-        I am using Rob's microcontroller. This controller worked better than the Adafruit one, and did not require me to download the driver for Metro (which I was having difficulty with) for capactive touch.
+        You will need: <br></br> <br></br> <br></br> <img src="assets/images/week6/IMG_1727.JPG" width="50%" style="transform:rotate(90deg)"/> <br></br> <br></br> <br></br> - a tone generator. Here I use the vertical strips of the breadboard since it is easier to plug in the tone and make sure the pins are not on the same strip. <br></br> <br></br> <br></br> <img src="assets/images/week6/IMG_1724.JPG" width="50%" style="transform:rotate(90deg)"/> <br></br> <br></br> <br></br>- two copper sheets on paper attached to respectice wire.
+        <br></br> - and a switch.
+        <br></br>
+        I am using Rob's microcontroller. This controller worked better than the Adafruit one, and did not require me to download the driver for Metro (which I was having difficulty with) for capactive touch). I did have to install the MattairTech board pack for Arduino and select the Generic D11C14A board.
+        <br></br> <img src="assets/images/week6/IMG_1723.JPG" width="50%" style="transform:rotate(90deg)"/>
     </p>
     <br></br>
-    <img src="assets/images/week4/arduinoinside.JPG" width= "70%"/>
+    Here it is all put together. <br></br>
+    <br></br> <img src="assets/images/week6/IMG_1600.JPG" width="50%" style="transform:rotate(90deg)"/> <br></br> <br></br>
     <br></br>
     <p>
-        The Arduino was programed to be delayed.
-        <a href=""> Download code soon to be implemented </a>
+        The code used: <br></br>
         <pre><code class="language-arduino">
             //tx_rx03  Robert Hart Mar 2019.
             //  Program to use transmit-receive across space between two conductors.
@@ -49,7 +51,6 @@
             int tx_pin = 9;
             int switch_pin = 13;
             int tone_pin= 5;
-            int t = 0; //sets for else
 
             void setup() {
                 pinMode(tx_pin, OUTPUT);      //Pin 4 provides the voltage step
@@ -87,32 +88,12 @@
 
                 //switch on
                 if (digitalRead(switch_pin) == HIGH){
-                    t = 0;
-                    //resets t
-                    if (result > 50000) {
                       int pitch1 = result/800;
                       tone(tone_pin, pitch1);
-                    }
-                    else{
-                      noTone(tone_pin);
-                      delay(1000);
-                    }
                 }       
                 //switch off
-                else{
-                    if (t == 0){
-                        tone(tone_pin, 400, 100);
-                        tone(tone_pin, 300, 100);
-                        tone(tone_pin, 200, 100);
-                        t = 1;
-                    }
-                }
             }
         </code></pre>
     </p>
-    <img src="assets/images/week4/ledoff.JPG"width= "50%"/> 
-    <img src="assets/images/week4/ledon.JPG" width= "50%"/>
-    <br></br>
-    <img src="assets/images/week4/wires.JPG"width= "60%"/> 
 </body>
 </html>
