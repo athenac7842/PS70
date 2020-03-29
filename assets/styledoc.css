@@ -10,3 +10,8 @@ body{
     text-align: center;
     background-color: #a8a8a8;  
 }
+head{
+    text-alight: center;
+    color: blue;
+    /* not sure why this doesnt work */
+}
