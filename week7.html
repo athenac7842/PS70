@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Capacitance</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/styledoc.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body> 
+    <br></br>
+    <head>Capacitive Sensing</head>  <br></br> 
+    <p>
+        I decided to use the capacitors as a creator of random noise. The project outcome was very entertaining and I was able to study the distances that created different noises. There is a switch to allow it to be turned on and off. 
+    </p>
+    <p>
+        You will need: <br></br> <br></br> <br></br> <img src="assets/images/week6/IMG_1727.JPG" width="50%" style="transform:rotate(90deg)"/> <br></br> <br></br> <br></br> - a tone generator. Here I use the vertical strips of the breadboard since it is easier to plug in the tone and make sure the pins are not on the same strip. <br></br> <br></br> <br></br> <img src="assets/images/week6/IMG_1724.JPG" width="50%" style="transform:rotate(90deg)"/> <br></br> <br></br> <br></br>- two copper sheets on paper attached to respectice wire.
+        <br></br> - and a switch.
+        <br></br>
+        I am using Rob's microcontroller. This controller worked better than the Adafruit one, and did not require me to download the driver for Metro (which I was having difficulty with) for capactive touch). I did have to install the MattairTech board pack for Arduino and select the Generic D11C14A board.
+        <br></br> <img src="assets/images/week6/IMG_1723.JPG" width="50%" style="transform:rotate(90deg)"/>
+    </p>
+    <br></br>
+    Here it is all put together. <br></br>
+    <br></br> <img src="assets/images/week6/IMG_1600.JPG" width="50%" style="transform:rotate(90deg)"/> <br></br> <br></br>
+    <br></br>
+    <p>
+        The code used: <br></br>
+        <pre><code class="language-arduino">
+            #include <Adafruit_NeoPixel.h>
+                #include <Servo.h>
+                
+                Servo myservo; //create object
+                
+                #define PIN        9 
+                #define NUMPIXELS 10 
+                #define DELAYVAL 500 // Time (in milliseconds) to pause between pixels
+                #define BUTTONPIN  2
+                #define SERVOPIN  12
+                
+                Adafruit_NeoPixel strip(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+                
+                void setup() {
+                  myservo.attach(SERVOPIN);  // attaches the servo on pin 12 to the servo object
+                  
+                  strip.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
+                  strip.show();            // Turn OFF all pixels ASAP
+                  strip.setBrightness(20); // Set BRIGHTNESS low to reduce draw (max = 255)
+                  pinMode(BUTTONPIN, INPUT);
+                }
+                
+                void loop() {
+                  myservo.write(60);
+                  delay(1000);
+                  myservo.write(0);
+                  
+                  digitalWrite(SERVOPIN, LOW);
+                  strip.clear(); // Set all pixel colors to 'off'
+                  if (digitalRead(BUTTONPIN) == HIGH) {
+                    // The first NeoPixel in a strand is #0, second is 1, all the way up
+                    // to the count of pixels minus one.
+                    for(int i=0; i < NUMPIXELS; i++) { // For each pixel...
+                  
+                      // strip.Color() takes RGB values, from 0,0,0 up to 255,255,255
+                      // Here we're using a moderately bright green color:
+                      strip.setPixelColor(i, strip.Color(100, 0, 70));
+                  
+                      strip.show();   // Send the updated pixel colors to the hardware.
+                  
+                      delay(DELAYVAL); // Pause before next pass through loop
+                      }
+                  }
+                    else {
+                      strip.clear();
+                    }
+                 }
+        </code></pre>
+    </p>
+</body>
+</html>
