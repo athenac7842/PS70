@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Wired Communication</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/styledoc.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body> 
+    <br></br>
+    <head>Communicationg with digital I/O : Wired Communication</head>  <br></br> 
+    <p>
+        The purpose of this week was to make two boards communicate, so I started this off with wired communication. One board transmitted information on a button press to a different receiving board the would turn on the LED strip in response to the button press. 
+    </p>
+    <br></br>
+    <!-- <video width="70%" controls>
+        <source src="assets/images/week7/final.MOV" >
+    </video> -->
+    <!-- <br></br> -->
+    <img src="assets/images/week8/transmit.JPG" width="50%" style="transform:rotate(90deg)"/>
+    <br></br>
+    <p>
+        The code used for the transmitting board: <br></br>
+        <pre><code class="language-arduino">
+            //Code to transmit
+            //Microcontroller has a button input and a digital output.
+            //The digital output can be connected to a digital input of a receiving microcontroller to make a simple network.
+            //The wired-together devices must share a common ground!
+
+            const int out_pin = 14;
+            const int button_pin = 9;
+
+            void setup() {
+            pinMode(button_pin, INPUT_PULLUP);  //This is the button pin.
+            pinMode(out_pin, OUTPUT);         // pin 5 for digital Write
+
+            Serial.begin(9600);        //for the USB serial devices, this baud rate is meaningless - can be "0"
+            }
+
+            void loop() {
+            int buttonState = digitalRead(button_pin);
+            Serial.println(buttonState);
+            digitalWrite(out_pin, buttonState);
+            delay(10);
+            }
+        </code></pre>
+    </p>
+    <br></br>
+    <img src="assets/images/week8/receive.JPG" width="50%" style="transform:rotate(90deg)"/>
+    <br></br>
+    <p>
+        The code used for the receiving board: <br></br>
+        <pre><code class="language-arduino">
+            //Code to turn on an LED in response to a change in input pin.
+            //PS70 use as a simple example of receiving for a wired network 3/30/20.  Rob Hart.
+
+            #include <Adafruit_NeoPixel.h>
+
+
+            #define PIN        11 
+            #define NUMPIXELS 10 
+
+            Adafruit_NeoPixel strip(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+            void setup() {
+            pinMode(7, INPUT_PULLUP);   // pin 7 for digitial read
+
+            strip.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
+            strip.show();            // Turn OFF all pixels ASAP
+            strip.setBrightness(20); // Set BRIGHTNESS low to reduce draw (max = 255)
+            
+            }
+
+            void loop() {
+            strip.clear(); // Set all pixel colors to 'off'
+            if (digitalRead(7)) {
+                // The first NeoPixel in a strand is #0, second is 1, all the way up
+                // to the count of pixels minus one.
+                for(int i=0; i < NUMPIXELS; i++) { // For each pixel...
+            
+                // strip.Color() takes RGB values, from 0,0,0 up to 255,255,255
+                // Here we're using a moderately bright green color:
+                strip.setPixelColor(i, strip.Color(100, 0, 70));
+            
+                strip.show();   // Send the updated pixel colors to the hardware.
+            
+                delay(200); // Pause before next pass through loop
+                }
+            }
+            else {
+                strip.clear();
+                }
+            }
+        </code></pre>
+    </p>
+</body>
+</html>
