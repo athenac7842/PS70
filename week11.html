@@ -112,14 +112,14 @@
     <img src="assets/images/week11/ultrasound.JPG" width="50%" style="transform:rotate(90deg)"/>
     <br></br>
     <p> 
-        An ultrasound sensor has four pins. From left to right, they should be connected to power, a digital pin, a different digital pin, and ground. This can be seen in the circuit below.
+        An ultrasound sensor has four pins. From left to right, they should be connected to power (5v), a digital pin, a different digital pin, and ground. This can be seen in the circuit below.
     </p>
     <br></br>
     <img src="assets/images/week11/ultrasoundcircuit.JPG" width="50%" style="transform:rotate(90deg)"/>
     <br></br>
     <p>
-        The code used for attempting to detect objects using ultrasound (have not determined the source of the issue, but seems to not detect at all because writes 0 cm): <br></br>
-        This may be the case since I connected it to 3v instead of 5v; I will try fixing this later this week. <br></br>
+        The code used for detecting objefcts using ultrasound (write a value 215 or higher when does not detect within the range): <br></br>
+        Since I am using an Itsybitsy microcontroller, I connected the power to USB to supply the 5 volts. Does not work with the 3v3 pin. <br></br>
         <pre><code class="language-arduino">
             // ---------------------------------------------------------------- //
             // Arduino Ultrasoninc Sensor HC-SR04
@@ -162,5 +162,10 @@
             }
         </code></pre>
     </p>
+    <br></br>
+    <video width="70%" controls>
+        <source src="assets/images/week11/ultrasound.MOV" >
+    </video>
+    <br></br>
 </body>
 </html>
