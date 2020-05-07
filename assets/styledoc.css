@@ -1,4 +1,4 @@
-body{
+body {
     border-style: dotted solid;
     border-width: 10px;
     border-color: green black;
@@ -10,8 +10,8 @@ body{
     text-align: center;
     background-color: #a8a8a8;  
 }
-head{
-    text-alight: center;
+.subtitle {
     color: blue;
+    font-size: x-large;
     /* not sure why this doesnt work */
 }
