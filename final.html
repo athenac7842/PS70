@@ -24,21 +24,28 @@
         <source src="assets/images/final/IMG_2057.MOV" >
     </video>
     <br></br>
-    <img src="assets/images/final/servoscircuit.JPG" width="50%" />
-    <img src="assets/images/week11/servosled.JPG" width="50%" />
+    <p class="subtitle">Assembly</p>
+    <p>
+        To make the legs, I used a hanger, and cut it up like so. I also use the part under the hook to make a spacer to separate the "hips" from the "shoulders".
+    </p>
+    <img src="assets/images/final/hanger.JPG" width="50%" />
+    <img src="assets/images/final/hanger_cut.JPG" width="50%" />
     <br></br>
     <p>
-        Here we see a switch on pin 2, which sets the state for the pins. There are also 5 servos from pins 5-11 (5, 7, 9, 10, 11). The two LEDs are on pins 12 and 13, each with a 10kOhm resistor 
-        in their respective circuits. The big jumble of wires for the time being is due to each servo having 3 total wires to connect to ground (brown or black), power (red), and a pin (orange). 
-        That means 15 wires just to communicate with the 5 servos.
+        The body consists of 5 servos. The legs attach to the servo horns (be sure to screw them into the servos before walking or they the legs will fall off). The servos should have the exposed gear facing outward, and the shaft is a servo perpendicular to the front 
+        two servos so that it rotates the back two servos once connected. Like so:
     </p>
-    <p>
-        <pre><code class="language-arduino">
- 
-        </code></pre>
+    <img src="assets/images/final/body_start2.JPG" width="50%" />
+    <img src="assets/images/final/body_start.JPG" width="50%" />
+    <img src="assets/images/final/body_start2.JPG" width="50%" />
+    <br></br>
+    <p> This is how the hips and shoulders look apart. For the hips, I had to use something to create a separation between the two servos to match the shoulder. Since I am limited
+        on supplies, I rolled up tape really tightly and hot glued the back to keep it stable.
     </p>
+    <img src="assets/images/final/hips.JPG" width="50%" />
+    <img src="assets/images/final/shoulders.JPG" width="50%" />
     <video width="70%" controls>
-        <source src="assets/images/week11/servos.MOV" >
+        <source src="assets/images/final/IMG_1904.MOV" >
     </video>
     <br></br>
     <p>
@@ -52,15 +59,38 @@
     </p>
     <img src="assets/images/week11/ultrasoundcircuit.JPG" width="50%" />
     <br></br>
+    <video width="40%" controls>
+        <source src="assets/images/final/IMG_2048.MOV" >
+    </video>
+    <p class="subtitle">Code for Project</p>
+    <p> A lot of this code is based off <a href="www.google.com" target="blank">this project</a>. I manipulated the code to change certain functionality, but giving credit where credit is due.</p>
     <p>
         <pre><code class="language-arduino">
-        
+        Hi, I am code.
         </code></pre>
     </p>
-    <br></br>
-    <video width="40%" controls>
-        <source src="assets/images/week11/ultrasound.MOV" >
-    </video>
+    <p class="subtitle">
+        Putting it all Together
+    </p>
+    <img src="assets/images/final/plan_to_fit.JPG" width="50%" />
+    <img src="assets/images/final/protoboard_and_uno_show.JPG" width="50%" />
+    <p>
+        Now that I have a plan and a conveniniently sized box, I would begin soldering wires to my prototype boards!
+    </p>
+    <img src="assets/images/final/ground_power_proto.JPG" width="50%" />
+    <p>
+        <img src="assets/images/week11/ultrasound.JPG" width="50%" />
+        <br></br>
+        An ultrasound sensor has four pins. From left to right, they should be connected to power (5v), a digital pin, a different digital pin, and ground. This can be seen in the circuit below.
+        <br></br>
+        Since I am using an Itsybitsy microcontroller, I connected the power to USB to supply the 5 volts. Does not work with the 3v3 pin.
+        <br></br>
+        The code used for detecting objefcts using ultrasound (set to write a value 215 or higher when does not detect within the range):
+    </p>
+    <p>
+        For more information on how ultrasound sensors work and help calibrating and understanding <a href="www.arduino.cc/en/Reference/ServoWriteMicroseconds">servo motors</a>, please see <a href="https://athenac7842.github.io/PS70/finalpart1">last week's page</a>.
+    </p>
+    
     
 </body>
 </html>
