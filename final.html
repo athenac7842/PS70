@@ -19,10 +19,7 @@
         <br></br> Rob-B is a 4 legged walking robot with two LED eyes and can detect obstacles using an ultrasonic sensor. 
     </p>
     <br></br>
-    <p class="subtitle">Video Demo</p>
-    <video width="40%" controls>
-        <source src="assets/images/final/breakmystride.MOV" >
-    </video>
+    <a href="https://www.youtube.com/watch?v=tZ8l2Clyo0Q&t=5s">Video Demo</a>
     <br></br>
     <p class="subtitle">Assembly</p>
     <p>
@@ -110,7 +107,8 @@
     <p class="subtitle">Explanation of Code</p>
         The code begins with establishing global variables. They have been mostly organized by category: Servos, run time, sonar, counters, and LEDs. Then comes a set up that goes through establishing the middle angle for the servos. Refer to link above if you would 
         like more explanation on why my numbers are as they are instead of angles. I set my LEDs as outputs and set the necessary specifics for the ultrasound. The LEDs turn on (via function WAKEUP()). Finally, I set distance, a very important global variable for establishing
-        when he will stop and start, by setting it equal to the ultrasound function (which outputs the distance in cm there is an object).
+        when he will stop and start, by setting it equal to the ultrasound function (which outputs the distance in cm there is an object). In the loop, Rob-B randomly chooses to either start or rest. Then, once started, depending on the distance of an object, Rob-B will either shine a green light and walk 
+        or shine a red light and wait for the obstacle to be moved. 
     </p>
     <p class="subtitle">Code for Project</p>
     <p> Some of this code is based off <a href=" http://chaoticvoltage.blogspot.com/2016/12/walter-arduino-insect-robot.html" target="blank">this project</a>. I manipulated the code to change certain functionality, but giving credit where credit is due.</p>
@@ -118,8 +116,6 @@
         <pre><code class="language-arduino">
             #include <Servo.h>
 
-                // some code adapted from http://chaoticvoltage.blogspot.com/2016/12/walter-arduino-insect-robot.html
-                
                 // Servos:
                 Servo SERVO_shaft;
                 Servo SERVO_front_left;
